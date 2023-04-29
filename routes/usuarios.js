@@ -1,9 +1,9 @@
 const {Router} = require('express');
-const {usuariosGet} = require('../controllers/usuarios');
-const {usuariosPost} = require('../controllers/usuarios');
-const {usuariosPut} = require('../controllers/usuarios');
-const {usuariosPatch} = require('../controllers/usuarios');
-const {usuariosDelete} = require('../controllers/usuarios');
+const {usuariosGet} = require('../controllers/Users');
+const {usuariosPost} = require('../controllers/Users');
+const {usuariosPut} = require('../controllers/Users');
+const {usuariosPatch} = require('../controllers/Users');
+const {usuariosDelete} = require('../controllers/Users');
 const router = Router();
 router.get('/', usuariosGet); 
 router.post('/', usuariosPost);
