@@ -3,7 +3,6 @@ const {
   Model
 } = require('sequelize');
 const credentials = require('./credentials');
-const { UPDATE } = require('sequelize/types/query-types');
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     /**
@@ -20,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false,
       unique: true,
+      primaryKey: true,
       references: {
         model: 'Credentials',
         key: 'username',
