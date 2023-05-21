@@ -9,12 +9,13 @@ class Server{
     }
     middlewares(){
         this.app.use(cors());
-        //lectura y parseo del body
         this.app.use(express.json());
         this.app.use(express.static('public'));
     }
     routes(){
-    this.app.use('/api/usuarios', require('../routes/usuarios'));
+        this.app.use('/apifeihub/users', require('../routes/users'));
+        this.app.use('/apifeihub/credentials', require('../routes/credentials'));
+        this.app.use('/apifeihub/follows', require('../routes/followers'));
     }
     listen(){
         this.app.listen(this.port, () => {

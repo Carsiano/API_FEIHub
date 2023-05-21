@@ -3,9 +3,8 @@ const {
   Model
 } = require('sequelize');
 const credentials = require('./credentials');
-const { UPDATE } = require('sequelize/types/query-types');
 module.exports = (sequelize, DataTypes) => {
-  class Users extends Model {
+  class users extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -15,11 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Users.init({
+  users.init({
     username: {
       type: DataTypes.STRING(50),
       allowNull: false,
       unique: true,
+      primaryKey: true,
       references: {
         model: 'Credentials',
         key: 'username',
@@ -45,10 +45,15 @@ module.exports = (sequelize, DataTypes) => {
     educationalProgram:{
       type: DataTypes.STRING(50),
       allowNull: true,
+    },
+    profilePhoto:  {
+      type: DataTypes.STRING(200),
+      allowNull: true,
     }
   }, {
     sequelize,
-    modelName: 'Users',
+    modelName: 'users',
+    timestamps: false
   });
-  return Users;
+  return users;
 };
