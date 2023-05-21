@@ -8,10 +8,14 @@ class UsersDAO {
     }
     static async updateUser (username, user){
         const updatedUser = await users.update(user, { where: { username } });
-        return updatedUserer;
+        return updatedUser;
     }
-    static async findUserById(username) {
+    static async findUserByUsername(username) {
         return await users.findByPk(username);
+    }
+    static async updateProfilePhoto(username, profilePhoto){
+        const updatedUser = await users.update({profilePhoto : profilePhoto}, { where: { username } });
+        return updatedUser;
     }
 }
 

@@ -7,10 +7,11 @@ class FollowersDAO{
     static async listUserFollowers(username){
         return await followers.findAll({where: {following:username}})
     }
-    static async addNewFollow(followers){
-        return await followers.create(followers);
+    static async addNewFollow(follow){
+        return await followers.create(follow);
     }
     static async deleteFollow(follower, following) {
         return await followers.destroy({ where: { follower:follower, following:following } });
     }
 }
+module.exports = FollowersDAO;
