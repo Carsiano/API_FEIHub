@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'credentials',
         key: 'username',
+        UPDATE: 'CASCADE'
       }
     },
     following: {
@@ -31,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'credentials',
         key: 'username',
+        UPDATE: 'CASCADE'
       }
     }
   }, {

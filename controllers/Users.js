@@ -55,8 +55,8 @@ const userByUsernameGet = async (req, res = response ) =>{
 }
 const userUpdatePut = async (req, res = response) => {
     const {username} = req.params;
-    const {usernameModified, name, paternalSurname, maternalSurname} = req.body;
-    const user = {username:usernameModified, name, paternalSurname, maternalSurname };
+    const { name, paternalSurname, maternalSurname} = req.body;
+    const user = { name, paternalSurname, maternalSurname };
     try {
       const updatedUser = await usersDAO.updateUser(username, user);
       res.status(200).json(updatedUser);
