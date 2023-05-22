@@ -6,5 +6,13 @@ class CredentialsDAO {
     static async findCredentialsByUsernamePassword(username, password){
         return await credentials.findOne({ where: {username, password} });
     }
+    static async updateUsername(actualUsername, usernameModified){
+        const updateCredentials = await credentials.update(
+          { username: usernameModified }, 
+          { where: { username: actualUsername } }
+        );
+        return updateCredentials;
+    }
+      
 }
 module.exports = CredentialsDAO;
