@@ -53,7 +53,7 @@ const deleteFollow = async (req, res = response) => {
         console.error(error);
         res
         .status(500)
-        .json({ message: `Failed to unfollow ${following}` });
+        .json({ message: `Failed to unfollow ${following}`, error });
     }
 };
 module.exports = {

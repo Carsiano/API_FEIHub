@@ -62,7 +62,7 @@ const userUpdatePut = async (req, res = response) => {
       res.status(200).json(updatedUser);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "There was an error updating your profile, try again later." });
+      res.status(500).json({ message: "There was an error updating your profile, try again later.", error });
     }
 }
 const userUpdateProfilePhotoPatch = async (req, res = response) => {
@@ -73,7 +73,7 @@ const userUpdateProfilePhotoPatch = async (req, res = response) => {
       res.status(200).json(updatedPhoto);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "There was an error updating your profile picture, try again later." });
+      res.status(500).json({ message: "There was an error updating your profile picture, try again later.", error });
     }
 }
 module.exports = {

@@ -17,7 +17,7 @@ const credentialsCreatePost = async (req, res = response) => {
     res.status(201).json(newCredentials);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 }
 
@@ -31,26 +31,12 @@ const credentialsLogin = async (req, res = response) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(404).json({ message: "Verify your access credentials" });
-  }
-}
-const usernameUpdatePut = async (req, res = response) => {
-  const {username} = req.params;
-  const { usernameModified } = req.body;
-  try {
-    const credentials = await credentialsDAO.updateUsername(username, usernameModified);
-    res.status(200).json({
-      username: credentials.username,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "There was an error updating your profile, try again later." });
+    res.status(404).json({ message: "Verify your access credentials", error });
   }
 }
 
 
 module.exports = {
   credentialsCreatePost,
-  credentialsLogin,
-  usernameUpdatePut
+  credentialsLogin
 };
