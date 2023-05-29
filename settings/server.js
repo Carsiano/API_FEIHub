@@ -13,9 +13,9 @@ class Server{
         this.app.use(express.static('public'));
     }
     routes(){
-        this.app.use('/apifeihub/users', require('../routes/users'));
-        this.app.use('/apifeihub/credentials', require('../routes/credentials'));
-        this.app.use('/apifeihub/follows', require('../routes/followers'));
+        this.app.use('/apiusersfeihub/users', require('../routes/users'));
+        this.app.use('/apiusersfeihub/credentials', require('../routes/credentials'));
+        this.app.use('/apiusersfeihub/follows', require('../routes/followers'));
     }
     listen(){
         this.app.listen(this.port, () => {
