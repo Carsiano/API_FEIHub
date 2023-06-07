@@ -6,9 +6,9 @@ const {
     deleteFollow
 } = require ('../controllers/followers')
 const router = Router();
-
-router.get('/followers/:username', listFollowers);
-router.get('/following/:username', listFollowing);
-router.post('/', addNewFollowPost);
-router.delete('/:follower/:following', deleteFollow); 
+const { validateJWT } = require('../middlewares/validationJWT');
+router.get('/followers/:username',[validateJWT], listFollowers);
+router.get('/following/:username',[validateJWT], listFollowing);
+router.post('/',[validateJWT], addNewFollowPost);
+router.delete('/:follower/:following',[validateJWT], deleteFollow); 
 module.exports = router;

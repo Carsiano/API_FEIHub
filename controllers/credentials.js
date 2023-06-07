@@ -1,6 +1,7 @@
 const { response } = require('express');
 const crypto = require('crypto');
 const credentialsDAO = require('../dao/credentialsDAO');
+const { generateJWT } = require('../helpers/create-jwt');
 
 const hash = async (text) => {
   const hash = crypto.createHash('sha256');
@@ -26,8 +27,10 @@ const credentialsLogin = async (req, res = response) => {
   const pass = await hash(password);
   try {
     const credentials = await credentialsDAO.findCredentialsByUsernamePassword(username, pass);
+    const token = await generateJWT(credentials.username);
     res.json({
       username: credentials.username,
+      token
     });
   } catch (error) {
     console.error(error);
