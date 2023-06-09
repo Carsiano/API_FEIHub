@@ -4,7 +4,7 @@ class UsersDAO {
         return await users.create(user);
     }
     static async createUserAcademic (user){
-        return await user.create(user);
+        return await users.create(user);
     }
     static async updateUser (username, user){
         const updatedUser = await users.update(user, { where: { username } });

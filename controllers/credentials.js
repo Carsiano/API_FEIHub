@@ -30,6 +30,7 @@ const credentialsLogin = async (req, res = response) => {
     const token = await generateJWT(credentials.username);
     res.json({
       username: credentials.username,
+      rol: credentials.rol,
       token
     });
   } catch (error) {
@@ -37,9 +38,22 @@ const credentialsLogin = async (req, res = response) => {
     res.status(404).json({ message: "Verify your access credentials", error });
   }
 }
+const credentialsExisting = async (req, res = response ) =>{
+  const {email} = req.params;
+  try{
+      const credentials = await credentialsDAO.findExistingCredentials(email);
+      res.json({
+        email: credentials.email
+      });
+  }catch (error){
+      console.error(error);
+      res.status(404).json({message:error});
+  }
+}
 
 
 module.exports = {
   credentialsCreatePost,
-  credentialsLogin
+  credentialsLogin,
+  credentialsExisting
 };

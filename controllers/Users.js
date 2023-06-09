@@ -44,7 +44,7 @@ const createUserPost = async (req, res = response) => {
   };
   
 const userByUsernameGet = async (req, res = response ) =>{
-    const {username} = req.body;
+    const {username} = req.params;
     try{
         const user = await usersDAO.findUserByUsername(username);
         res.status(200).json(user);
