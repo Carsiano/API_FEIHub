@@ -41,7 +41,32 @@ const listFollowing = async (req, res = response) => {
         });
     }
 };
-
+const listFollowingUsers = async (req, res = response) => {
+    const username = req.params.username;
+    try {
+        const followers = await followersDAO.listUserFollowingComplete(username);
+        res.status(200).json(followers);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+        message: "We couldn't get who you follow, try again later.",
+        error: error.toString(),
+        });
+    }
+}
+const listFollowerUsers = async (req, res = response) => {
+    const username = req.params.username;
+    try {
+        const followers = await followersDAO.listUserFollowerComplete(username);
+        res.status(200).json(followers);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+        message: "We couldn't get who you follow, try again later.",
+        error: error.toString(),
+        });
+    }
+}
 const deleteFollow = async (req, res = response) => {
     const { follower, following } = req.params;
     try {
@@ -60,5 +85,7 @@ module.exports = {
     addNewFollowPost,
     listFollowers,
     listFollowing,
+    listFollowingUsers,
+    listFollowerUsers,
     deleteFollow
 };
