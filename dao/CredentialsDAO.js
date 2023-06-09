@@ -13,6 +13,9 @@ class CredentialsDAO {
         );
         return updateCredentials;
     }
+    static async findExistingCredentials(email){
+        return await credentials.findOne({ where: {email}});
+    }
       
 }
 module.exports = CredentialsDAO;
