@@ -53,6 +53,16 @@ const userByUsernameGet = async (req, res = response ) =>{
         res.status(500).json({message:error});
     }
 }
+const similarUserByUsernameGet = async (req, res = response ) =>{
+  const {username} = req.params;
+  try{
+      const users = await usersDAO.findSimilarUsersByUsername(username);
+      res.status(200).json(users);
+  }catch (error){
+      console.error(error);
+      res.status(500).json({message:error});
+  }
+}
 const userUpdatePut = async (req, res = response) => {
     const {username} = req.params;
     const { name, paternalSurname, maternalSurname} = req.body;
@@ -80,6 +90,7 @@ module.exports = {
     createUserPost,
     userByUsernameGet,
     userUpdatePut,
-    userUpdateProfilePhotoPatch
+    userUpdateProfilePhotoPatch,
+    similarUserByUsernameGet
 };
 

@@ -1,4 +1,4 @@
-const { users } = require ('../models');
+const { users, Sequelize } = require ('../models');
 class UsersDAO {
     static async createUserStudent (user){
         return await users.create(user);
@@ -16,6 +16,18 @@ class UsersDAO {
     static async updateProfilePhoto(username, profilePhoto){
         const updatedUser = await users.update({profilePhoto : profilePhoto}, { where: { username } });
         return updatedUser;
+    }
+    static async findSimilarUsersByUsername(username) {
+        const Op = Sequelize.Op;
+        const similarUsername = `%${username}%`;
+    
+        return await users.findAll({
+          where: {
+            username: {
+              [Op.like]: similarUsername
+            }
+          }
+        })
     }
 }
 
