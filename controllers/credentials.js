@@ -1,6 +1,6 @@
 const { response } = require('express');
 const crypto = require('crypto');
-const credentialsDAO = require('../dao/credentialsDAO');
+const credentialsDAO = require('../dao/CredentialsDAO');
 const { generateJWT } = require('../helpers/create-jwt');
 
 const hash = async (text) => {

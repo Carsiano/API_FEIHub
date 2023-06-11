@@ -5,7 +5,7 @@ const {
     userUpdatePut,
     userUpdateProfilePhotoPatch,
     similarUserByUsernameGet
-} = require('../controllers/users');
+} = require('../controllers/Users');
 const { validateJWT } = require('../middlewares/validationJWT');
 const router = express.Router();
 

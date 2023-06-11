@@ -1,5 +1,5 @@
 const {response} = require('express');
-const usersDAO = require('../dao/usersDAO');
+const usersDAO = require('../dao/UsersDAO');
 const { use } = require('../routes/users');
 
 const createUserPost = async (req, res = response) => {

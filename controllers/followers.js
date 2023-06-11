@@ -1,5 +1,5 @@
 const {response} = require('express');
-const followersDAO = require('../dao/followersDAO');
+const followersDAO = require('../dao/FollowersDAO');
 const { use } = require('../routes/followers');
 
 const addNewFollowPost = async (req, res = response) => {
