@@ -65,8 +65,8 @@ const similarUserByUsernameGet = async (req, res = response ) =>{
 }
 const userUpdatePut = async (req, res = response) => {
     const {username} = req.params;
-    const { name, paternalSurname, maternalSurname} = req.body;
-    const user = { name, paternalSurname, maternalSurname };
+    const { name, paternalSurname, maternalSurname, profilePhoto} = req.body;
+    const user = { name, paternalSurname, maternalSurname, profilePhoto };
     try {
       const updatedUser = await usersDAO.updateUser(username, user);
       res.status(200).json(updatedUser);
