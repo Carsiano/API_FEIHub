@@ -1,7 +1,42 @@
 const {response} = require('express');
 const usersDAO = require('../dao/UsersDAO');
 const { use } = require('../routes/users');
-
+/**
+ * @swagger
+ * /users:
+ *  post:
+ *    summary: create new user depending rol
+ *    tags : [Users]
+ *    requestBody:
+ *      required.true
+ *    content:
+ *      username:
+ *        type: String
+ *        description: the username user
+ *      name:
+ *        type: String
+ *        description: the name user
+ *      paternalSurname:
+ *        type: String
+ *        description: the paternal surname user 
+ *      maternalSurname:
+ *        type: String
+ *        description: the maternal surname user 
+ *      schoolId:
+ *        type: String
+ *        description: the schoolId user 
+ *      educationalProgram:
+ *        type: String
+ *        description: the educationalProgram user 
+ *      rol:
+ *        type: String
+ *        description: the rol in the system user
+ *    responses:
+ *      201:
+ *        description: created user
+ *      500:
+ *        description: error server
+ */
 const createUserPost = async (req, res = response) => {
     const { username, name, paternalSurname, maternalSurname, schoolId, educationalProgram, rol } = req.body;
   
@@ -42,7 +77,24 @@ const createUserPost = async (req, res = response) => {
         res.status(400).json({ message: 'Invalid role' });
     }
   };
-  
+/**
+ * @swagger
+ * /users/:username:
+ *  get:
+ *    summary: get user by username
+ *    tags : [Users]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      username:
+ *        type: String
+ *        description: the username userr
+ *    responses:
+ *      201:
+ *        description: get user
+ *      500:
+ *        description: error server
+ */
 const userByUsernameGet = async (req, res = response ) =>{
     const {username} = req.params;
     try{
@@ -53,6 +105,24 @@ const userByUsernameGet = async (req, res = response ) =>{
         res.status(500).json({message:error});
     }
 }
+/**
+ * @swagger
+ * /users/findUsers/:username:
+ *  get:
+ *    summary: search user by username like username send
+ *    tags : [Users]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      username:
+ *        type: String
+ *        description: the username userr
+ *    responses:
+ *      201:
+ *        description: get users
+ *      500:
+ *        description: error server
+ */
 const similarUserByUsernameGet = async (req, res = response ) =>{
   const {username} = req.params;
   try{
@@ -63,6 +133,24 @@ const similarUserByUsernameGet = async (req, res = response ) =>{
       res.status(500).json({message:error});
   }
 }
+/**
+ * @swagger
+ * /users/:username:
+ *  put:
+ *    summary: update user
+ *    tags : [Users]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      username:
+ *        type: String
+ *        description: the username user
+ *    responses:
+ *      201:
+ *        description: get user updated
+ *      500:
+ *        description: error server
+ */
 const userUpdatePut = async (req, res = response) => {
     const {username} = req.params;
     const { name, paternalSurname, maternalSurname, profilePhoto} = req.body;
@@ -75,6 +163,24 @@ const userUpdatePut = async (req, res = response) => {
       res.status(500).json({ message: "There was an error updating your profile, try again later.", error });
     }
 }
+/**
+ * @swagger
+ * /users/:username:
+ *  patch:
+ *    summary: update user
+ *    tags : [Users]
+ *    requestBody:
+ *      required.true
+ *    content:
+ *      profilePhotoLink:
+ *        type: String
+ *        description: the url of profile photo user
+ *    responses:
+ *      201:
+ *        description: get user updated
+ *      500:
+ *        description: error server
+ */
 const userUpdateProfilePhotoPatch = async (req, res = response) => {
     const {username} = req.params;
     const { profilePhotoLink } = req.body;

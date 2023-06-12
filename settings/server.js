@@ -16,11 +16,13 @@ class Server{
         this.app.use('/apiusersfeihub/users', require('../routes/users'));
         this.app.use('/apiusersfeihub/credentials', require('../routes/credentials'));
         this.app.use('/apiusersfeihub/follows', require('../routes/followers'));
+        this.app.use('/apidocs', require ('../routes/docs'))
     }
     listen(){
         this.app.listen(this.port, () => {
         console.log(`Server listening on port ${this.port}`)
         })
     }
+    
 }
 module.exports = Server;

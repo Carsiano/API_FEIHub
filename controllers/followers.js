@@ -1,7 +1,27 @@
 const {response} = require('express');
 const followersDAO = require('../dao/FollowersDAO');
 const { use } = require('../routes/followers');
-
+/**
+ * @swagger
+ * /follows:
+ *  post:
+ *    summary: add new folow
+ *    tags : [Followers]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      follower:
+ *        type: String
+ *        description: username to follower
+ *      following:
+ *        type: String
+ *        description: username to following
+ *    responses:
+ *      200:
+ *        description: create new follow
+ *      500:
+ *        description: error server
+ */
 const addNewFollowPost = async (req, res = response) => {
     const { follower, following } = req.body;
     const followers = { follower, following };
@@ -13,7 +33,24 @@ const addNewFollowPost = async (req, res = response) => {
       res.status(500).json({ message: error.toString() });
     }
 };
-
+/**
+ * @swagger
+ * /follows/followers/:username:
+ *  get:
+ *    summary: get followers to user
+ *    tags : [Followers]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      username:
+ *        type: String
+ *        description: username to following
+ *    responses:
+ *      200:
+ *        description: get followers
+ *      500:
+ *        description: error server
+ */
 const listFollowers = async (req, res = response) => {
     const username = req.params.username;
     try {
@@ -27,7 +64,24 @@ const listFollowers = async (req, res = response) => {
         });
     }
 };
-
+/**
+ * @swagger
+ * /follows/following/:username:
+ *  get:
+ *    summary: get followers to user
+ *    tags : [Followers]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      username:
+ *        type: String
+ *        description: username to follower
+ *    responses:
+ *      200:
+ *        description: get following
+ *      500:
+ *        description: error server
+ */
 const listFollowing = async (req, res = response) => {
     const username = req.params.username;
     try {
@@ -41,6 +95,24 @@ const listFollowing = async (req, res = response) => {
         });
     }
 };
+/**
+ * @swagger
+ * /follows/followingUsers/:username:
+ *  get:
+ *    summary: get following to user
+ *    tags : [Followers]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      username:
+ *        type: String
+ *        description: username to follower
+ *    responses:
+ *      200:
+ *        description: get complete user following
+ *      500:
+ *        description: error server
+ */
 const listFollowingUsers = async (req, res = response) => {
     const username = req.params.username;
     try {
@@ -54,6 +126,24 @@ const listFollowingUsers = async (req, res = response) => {
         });
     }
 }
+/**
+ * @swagger
+ * /follows/followersUsers/:username:
+ *  get:
+ *    summary: get followers to user
+ *    tags : [Followers]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      username:
+ *        type: String
+ *        description: username to following
+ *    responses:
+ *      200:
+ *        description: get complete user followers
+ *      500:
+ *        description: error server
+ */
 const listFollowerUsers = async (req, res = response) => {
     const username = req.params.username;
     try {
@@ -67,6 +157,24 @@ const listFollowerUsers = async (req, res = response) => {
         });
     }
 }
+/**
+ * @swagger
+ * /follows/follower/:following:
+ *  delete:
+ *    summary: get followers to user
+ *    tags : [Followers]
+ *    requestParameters:
+ *      required.true
+ *    content:
+ *      following:
+ *        type: String
+ *        description: username to following
+ *    responses:
+ *      200:
+ *        description: delet follow
+ *      500:
+ *        description: error server
+ */
 const deleteFollow = async (req, res = response) => {
     const { follower, following } = req.params;
     try {
