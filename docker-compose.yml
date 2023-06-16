@@ -20,7 +20,7 @@ services:
       - 127.0.0.1:3306:3306
     volumes:
       - mysql-data:/var/lib/mysql
-      - C:\Users\DELL 5490\Downloads\feihub_users (2).sql:/docker-entrypoint-initdb.d/init.sql
+      - ./feihub_users.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   mysql-data:
